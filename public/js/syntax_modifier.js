@@ -122,6 +122,13 @@
 			return html;
 		});
 
+		// Replace inline code
+		text = text.replace(/``(.*?)``/g, '<code>$1</code>');
+		text = text.replace(/`(.*?)`/g, '<code>$1</code>');
+
+		// Replace horizontal rules
+		text = text.replace(/(^|\n)---(\n|$)/g, '$1<hr>$2');
+
 		// Restore code blocks
 		codeBlocks.forEach((codeBlock, index) => {
 			text = text.replace(`[[[[CODEBLOCK_${index}]]]]`, `<pre><code ignore_Format>${codeBlock}</code></pre>`);
